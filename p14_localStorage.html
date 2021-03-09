@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API</li>
+        <li>https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage</li>
+    </ul>
+    <label>Key<input type="text" name="" id="item-key"></label>
+    <label>Name: <input type="text" name="" id="item-name"></label>
+    <label>Surname: <input type="text" name="" id="item-surname"></label>
+    <label>Age: <input type="number" name="" id="item-age"></label>
+    <button id="add-item">Add item</button>
+    <button id="get-all-items">Get All items</button>
+
+    <template id="new-item">
+        <li class="new-item"></li>
+    </template>
+
+    <ul id="items-list">
+
+    </ul>
+    <script>
+        const itemKeyEl = document.querySelector("#item-key");
+        const itemNameEl = document.querySelector("#item-name");
+        const itemSurnameEl = document.querySelector("#item-surname");
+        const itemAgeEl = document.querySelector("#item-age");
+ 
+        const templateEl = document.querySelector("#new-item").content;
+        const itemsListEl = document.querySelector("#items-list");
+
+        document.querySelector("#add-item").addEventListener("click", ()=>{
+            const item_value = {
+                name : itemNameEl.value,
+                surname : itemSurnameEl.value,
+                age : +itemAgeEl.value,
+            };
+            localStorage.setItem(itemKeyEl.value, JSON.stringify(item_value));
+        });
+
+        document.querySelector("#get-all-items").addEventListener("click", ()=>{
+            itemsListEl.innerHTML = "";
+            for (let index = 0; index < localStorage.length; index++) {
+                const key = localStorage.key(index);
+                const value = JSON.parse(localStorage.getItem(key));
+                const newItemEl = templateEl.cloneNode(true);
+                newItemEl.querySelector("li").textContent = `Key: ${key} - Name: ${value.name} - Surname: ${value.surname} - Age: ${value.age}`;
+                itemsListEl.appendChild(newItemEl);
+            }
+        });
+    </script>    
+</body>
+</html>
