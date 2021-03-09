@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB">https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB</a></li>
+            <li><a href="https://github.com/jakearchibald/idb">https://github.com/jakearchibald/idb</a></li>
+        </ul>
+    </nav>
+    <button id="open-db">Open Db</button>
+    <button id="get-items">Get All items From Store</button>
+    <div>
+        <input id="item-value" value="New Item!"><button id="add-item">Add Item</button>
+    </div>
+    <template id="evt"><li class="content"></li></template>
+    <ul id="events">
+
+    </ul>
+    <script>
+        let db;
+        const storeName = 'newsitems';
+        const openDbEl = document.querySelector("#open-db");
+        const itemValueEl = document.querySelector("#item-value");
+        const addItemEl = document.querySelector("#add-item");
+        const getItemsEl = document.querySelector("#get-items");
+        const evtEl = document.querySelector("#evt");
+        const eventsEl = document.querySelector("#events");
+
+        function addEvent(evtText){
+            const newEvtEl = evtEl.content.cloneNode('true');
+            newEvtEl.querySelector('.content').textContent = evtText;
+            eventsEl.appendChild(newEvtEl);
+        }
+
+        openDbEl.addEventListener('click', ()=>{
+            const dbName = 'myDB';
+            const dbVersion = 1;
+            const request = window.indexedDB.open(dbName, dbVersion);
+
+            //this happens if there's no db or if the db has an older version
+            request.onupgradeneeded = event => {
+                addEvent('upgradeneeded');
+                db = event.target.result;
+                if (!db.objectStoreNames.contains(storeName)) {
+                    addEvent(`creating object store ${storeName}`);
+                    //new object store. each item will get an 'id' property, created by the bd  
+                    db.createObjectStore(storeName, { keyPath: 'id', autoIncrement : true });
+                    addEvent(`object store ${storeName} has been created`);
+                }
+            };
+
+            //this happens if the db with the requested version has been found
+            request.onsuccess = event => {
+                addEvent('request success');
+                db = event.target.result;
+                db.onerror = evt => {
+                    addEvent('IndexedDB error: ' + evt.target.error);
+                };
+            };
+        });
+        
+        addItemEl.addEventListener('click', ()=>{
+            const transaction = db.transaction([storeName], "readwrite");
+            const objectStore = transaction.objectStore(storeName);
+            addEvent('adding new item on the store');
+            const request = objectStore.add({value: itemValueEl.value});
+            request.onsuccess = function(event) {
+                addEvent(`item added to the store with key: ${event.target.result}`)
+            };
+        });
+
+        getItemsEl.addEventListener('click', ()=>{
+            addEvent('reading cursor');
+            var objectStore = db.transaction(storeName).objectStore(storeName);
+            objectStore.openCursor().onsuccess = function(event) {
+                addEvent('cursor - next item');
+                var cursor = event.target.result;
+                if (cursor) {
+                    addEvent(`key: ${cursor.key} - value: ${JSON.stringify(cursor.value)}`);
+                    cursor.continue();
+                }
+                else {
+                    addEvent('end of cursor');
+                }
+            };
+        });
+
+    </script>
+</body>
+</html>

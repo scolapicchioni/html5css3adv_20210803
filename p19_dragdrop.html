@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 50vw;
+            height: 50vh;
+        }
+        .drag-source{
+            background-color: #bada55;
+        }
+        .drop-target{
+            background-color: #daa555;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API">https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API</a></li>
+        </ul>
+    </nav>
+    <div class="drag-source" draggable="true"></div>
+    <div class="drop-target"></div>
+    <script>
+        const dragSource = document.querySelector(".drag-source");
+        const dropTarget = document.querySelector(".drop-target");
+
+        dragSource.addEventListener("dragstart", evt=>{
+            console.log("dragstart");
+            evt.dataTransfer.setData("text/plain", "productid = 3");
+        });
+        dropTarget.addEventListener("dragover", evt=>{
+            console.log("dragover");
+            evt.stopPropagation();
+            evt.preventDefault();
+        });
+
+        dropTarget.addEventListener("drop", evt=>{
+            console.log("drop");
+            console.log(evt.dataTransfer.getData("text/plain"));
+        });
+
+    </script>
+</body>
+</html>

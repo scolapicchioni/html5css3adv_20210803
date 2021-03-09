@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers">https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers</a></li>
+        </ul>
+    </nav>
+    <input id="n1" type="number"><input id="n2" type="number">
+    <button id="add" data-command="add">Add</button>
+    <button id="subtract" data-command="subtract">Subtract</button>
+    <button id="multiply" data-command="multiply">Multiply</button>
+    <button id="divide" data-command="divide">Divide</button>
+    <span id="result"></span>
+    <script>
+        const n1El = document.querySelector("#n1");
+        const n2El = document.querySelector("#n2");
+        const resultEl = document.querySelector("#result");
+        const worker = new Worker('./p17_webworkers.js');
+
+        worker.onmessage = evt => {
+            resultEl.textContent = `The result of the ${evt.data.command} is ${evt.data.result}`;         
+        }
+
+
+        for(const button of document.querySelectorAll("button[data-command]")){
+            button.addEventListener("click",ev=>{
+                const btn = ev.srcElement;
+                const command = {
+                    command : btn.dataset.command,
+                    payload: {
+                        param1:  +n1El.value,
+                        param2:  +n2El.value,
+                    }
+                };
+                worker.postMessage(command);
+            })
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <template id="message-template">
+        <li></li>
+    </template>
+    <nav><ul><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications">https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications</a></li></ul></nav>
+    <button id="open-connection">Open Connection</button>
+    <button id="close-connection">Close Connection</button>
+    <button id="send-message">Open Connection</button>
+    <ul id="messages"></ul>
+    <script>
+        const messageTemplate = document.querySelector("#message-template").content;
+        const messages = document.querySelector("#messages");
+
+        function showMessage(msg){
+            const child = messageTemplate.cloneNode(true);
+            child.querySelector("li").textContent = msg;
+            messages.appendChild(child);
+        }
+
+        let  socket;
+        document.querySelector("#open-connection").addEventListener("click", ()=>{
+            socket = new WebSocket('wss://echo.websocket.org');
+            socket.onopen = evt => showMessage("connection opened");
+            socket.onclose = evt => showMessage("connection closed");
+            socket.onmessage = evt => showMessage("message received: " + evt.data);
+        });
+        document.querySelector("#close-connection").addEventListener("click", ()=>{
+            socket.close();
+        });
+        document.querySelector("#send-message").addEventListener("click", ()=>{
+            socket.send("hello world");
+        });
+    </script>
+</body>
+</html>

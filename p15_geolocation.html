@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            line-height: 1.6rem;
+            background-color: rgb(229, 230, 173);
+        }
+        button{
+            font-family: inherit;
+            background-color: lightblue;
+            border: none;
+            border-radius: .5rem;
+            padding: 1rem;
+            box-shadow: .5rem .5rem 1rem rgba(0,0,0,.5);
+            transition: 500ms all;
+        }
+        button:hover{
+            background-color: rgb(173, 230, 201);
+        }
+        .container{
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: .5rem;
+            width:50vw;
+        }
+        .container__title {
+            grid-column: 1 / span 2;
+        }
+        a {
+            color:rgb(195, 173, 230);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API">https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API</a></li>
+        </ul>
+    </nav>
+    <button id="get-position">Get Position</button>
+    <button id="watch-position">Watch Position</button>
+    <button id="clear-watch">Clear Watch</button>
+    <section class="container">
+        <h2 class="container__title">Location: </h2>
+        <div>Latitude:</div><div id="latitude"></div>
+        <div>Longitude:</div><div id="longitude"></div>
+        <div>Accuracy:</div><div id="accuracy"></div>
+        <div>Altitude:</div><div id="altitude"></div>
+        <div>Altitude Accuracy:</div><div id="altitudeAccuracy"></div>
+        <div>Heading:</div><div id="heading"></div>
+        <div>Speed:</div><div id="speed"></div>
+        <div>TimeStamp:</div><div id="timestamp"></div>
+    </section>
+    <div class="container">
+        <h2 class="container__title">Error:</h2>
+        <div>Code:</div><div id="code"></div>
+        <div>Message:</div><div id="message"></div>
+    </div>
+
+    <script>
+        const latitudeEl = document.querySelector("#latitude");
+        const longitudeEl = document.querySelector("#longitude");
+        const accuracyEl = document.querySelector("#accuracy");
+
+        const altitudeEl = document.querySelector("#altitude");
+        const altitudeAccuracyEl = document.querySelector("#altitudeAccuracy");
+        
+        const headingEl = document.querySelector("#heading");
+        const speedEl = document.querySelector("#speed");
+        
+        const timestampEl = document.querySelector("#timestamp");
+
+        const codeEl = document.querySelector("#code");
+        const messageEl = document.querySelector("#message");
+
+        function showPosition(position){
+            latitudeEl.textContent = position.coords.latitude;
+            longitudeEl.textContent = position.coords.longitude;
+            altitudeEl.textContent = position.coords.altitude;
+            altitudeAccuracyEl.textContent = position.coords.altitudeAccuracy;
+            accuracyEl.textContent = position.coords.accuracy;
+            headingEl.textContent = position.coords.heading;
+            speedEl.textContent = position.coords.speed;
+        }
+
+        function showError(error){
+            codeEl.textContent = error.code;
+            messageEl.textContent = error.message;
+        }
+        document.querySelector("#get-position").addEventListener("click", ()=>{
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        });
+           
+        let watchId;
+        document.querySelector("#watch-position").addEventListener("click", ()=>{
+            watchId = navigator.geolocation.watchPosition(showPosition, showError);
+        });
+        document.querySelector("#clear-watch").addEventListener("click", ()=>{
+            navigator.geolocation.clearWatch(watchId);
+        });
+    </script>
+</body>
+</html>
