@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        rect {
+            fill: yellow;
+            stroke: navy;
+            stroke-width: 1px;
+            transition: all 1s;
+        }
+        rect:hover{
+            fill: red;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg</li>
+        <li>https://www.motiontricks.com/creating-dynamic-svg-elements-with-javascript/</li>
+    </ul>
+
+    <svg id="svg1" height="300" width="300" viewBox="0 0 300 300">    
+    </svg>
+
+    <script>
+        const data = [{label: 'Rome', value: 9}, {label: 'Milan', value: 5}, {label: 'Naples', value: 3}];
+
+        const svg = document.querySelector("#svg1");
+        
+        const template = document.querySelector("template");
+
+        const unit = 30;
+
+        const svgns = "http://www.w3.org/2000/svg";
+
+        for(let i = 0; i< data.length; i++){
+            let rect = document.createElementNS(svgns, "rect");
+
+            const height = data[i].value * unit
+            rect.setAttribute("x",20*i);
+            rect.setAttribute("y",300 - height);
+            rect.setAttribute("width",10);
+            rect.setAttribute("height",height);
+            svg.appendChild(rect);
+        }
+        
+    </script>
+</body>
+</html>

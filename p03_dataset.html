@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
+  <template id="article-template">
+    <article class="order">
+      <h1 class="order__id"></h1>
+      <p class="order__customer-name"> </p>
+      <p class="order__amount"></p>
+      <button class="order__delete">Delete</button>
+    </article>
+  </template>
+
+  <section id="orders">
+
+  </section>
+
+  <script>
+    const orders = [{id : 12, customer: 'Mr. Cane', amount: 123}, {id : 25, customer: 'Mrs. Black', amount: 345}, {id : 42, customer: 'Mr. Adams', amount: 42}];
+    const templateEl = document.querySelector("#article-template");
+    const ordersEl = document.querySelector("#orders");
+    
+    fillOrdersElement();
+    function fillOrdersElement(){
+      for(let order of orders){
+        const newEl = templateEl.content.cloneNode(true);
+        newEl.querySelector(".order__id").textContent = `This is order number ${order.id}`;
+        newEl.querySelector(".order__customer-name").textContent = `Customer name: ${order.customer}`;
+        newEl.querySelector(".order__amount").textContent = `Total: ${order.amount}`;
+        newEl.querySelector(".order__delete").dataset.orderId = order.id;
+        ordersEl.appendChild(newEl);
+      }
+    }
+    
+
+    
+
+  </script>
+</body>
+</html>

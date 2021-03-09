@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px solid black;
+        }
+        .container {
+            margin: 10px 0;
+            background-color: #ddd;
+        }
+        .flex_container_01 {
+            display: flex;
+        }
+        .flex_container_02 {
+            display: flex;
+            flex-direction: column;
+        }
+        .flex_container_03 {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+        .flex_container_04 {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        .flex_container_05 {
+            display: flex;
+        }
+        .flex_container_06 {
+            display: flex;
+            width: 100px;
+        }
+        .flex_container_07 {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100px;
+        }
+        .flex_container_08 {
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .flex_container_09 {
+            display: flex;
+            flex-direction: column;
+            height: 200px;
+            justify-content: space-evenly;
+        }
+        .flex_container_10 {
+            display: flex;
+        }
+        .flex_container_10 div {
+            flex-grow: 1;
+        }
+        .flex_container_11 {
+            display: flex;
+        }
+        .flex_container_11 div {
+            flex-grow: 1;
+            flex-basis: 0;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>https://css-tricks.com/snippets/css/a-guide-to-flexbox/</li>
+        <li>https://flexboxfroggy.com/</li>
+        <li>https://mastery.games/flexboxzombies/</li>
+    </ul>
+    
+    <div class="container">
+        <div>d1</div>
+        <div>d2</div>
+        <div>d3</div>
+    </div>
+
+    <div class="flex_container_01 container">
+        <div>flex_container_01 d1</div>
+        <div>flex_container_01 d2</div>
+        <div>flex_container_01 d3</div>
+    </div>
+    <div class="flex_container_02 container">
+        <div>flex_container_02 d1</div>
+        <div>flex_container_02 d2</div>
+        <div>flex_container_02 d3</div>
+    </div>
+    <div class="flex_container_03 container">
+        <div>flex_container_03 d1</div>
+        <div>flex_container_03 d2</div>
+        <div>flex_container_03 d3</div>
+    </div>
+    <div class="flex_container_04 container">
+        <div>flex_container_04 d1</div>
+        <div>flex_container_04 d2</div>
+        <div>flex_container_04 d3</div>
+    </div>
+
+    <div class="flex_container_05 container">
+        <div>flex_container_05 d1</div>
+        <div>flex_container_05 d2 Lorem ipsum dolor sit amet. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id consectetur possimus illo explicabo, alias, voluptas ea nesciunt obcaecati minus fugiat delectus veniam aut distinctio nam, porro beatae odio aliquam ipsam. Lorem ipsum dolor sit amet.</div>
+        <div>flex_container_05 d3</div>
+    </div>
+    <div class="flex_container_06 container">
+        <div>flex_container_06 d1</div>
+        <div>flex_container_06 d2 Lorem ipsum dolor sit amet. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id consectetur possimus illo explicabo, alias, voluptas ea nesciunt obcaecati minus fugiat delectus veniam aut distinctio nam, porro beatae odio aliquam ipsam. Lorem ipsum dolor sit amet.</div>
+        <div>flex_container_06 d3</div>
+    </div>
+    <div class="flex_container_07 container">
+        <div>flex_container_07 d1</div>
+        <div>flex_container_07 d2 Lorem ipsum dolor sit amet. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id consectetur possimus illo explicabo, alias, voluptas ea nesciunt obcaecati minus fugiat delectus veniam aut distinctio nam, porro beatae odio aliquam ipsam. Lorem ipsum dolor sit amet.</div>
+        <div>flex_container_07 d3</div>
+    </div>
+
+    <div class="flex_container_08 container">
+        <div>flex_container_08 d1</div>
+        <div>flex_container_08 d2</div>
+        <div>flex_container_08 d3</div>
+    </div>
+    <div class="flex_container_09 container">
+        <div>flex_container_09 d1</div>
+        <div>flex_container_09 d2</div>
+        <div>flex_container_09 d3</div>
+    </div>
+    <div class="flex_container_10 container">
+        <div>flex_container_10 d1</div>
+        <div>flex_container_10 d2 Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</div>
+        <div>flex_container_10 d3</div>
+    </div>
+    <div class="flex_container_11 container">
+        <div>flex_container_11 d1</div>
+        <div>flex_container_11 d2 Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</div>
+        <div>flex_container_11 d3</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_usage
+    <canvas id="canvas1" height="300" width="300"></canvas>
+
+    <script>
+        const data = [{label: 'Rome', value: 9}, {label: 'Milan', value: 5}, {label: 'Naples', value: 3}];
+
+        const canvas = document.querySelector("#canvas1");
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'rgb(200, 0, 0)';
+
+        const unit = 30;
+
+        for(let i = 0; i< data.length; i++){
+            console.log(data[i].value * unit);
+            const height = data[i].value * unit
+            ctx.fillRect(20 * i,300 - height,10,height);
+        }
+        
+    </script>
+</body>
+</html>

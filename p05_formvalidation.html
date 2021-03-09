@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input:invalid {
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+
+https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation
+    <form>
+    <input type="text" required>
+    <input type="text" list="my-list">
+    
+    <datalist id="my-list">
+        <option>First</option>
+        <option>Second</option>
+        <option>Third</option>
+    </datalist>
+    <input type="url">
+    <input type="text" autocomplete="family-name">
+    <input type="text" autocomplete="given-name">
+    <input type="text" autocomplete="address-line1">
+    <input type="submit">
+    </form>
+</body>
+</html>

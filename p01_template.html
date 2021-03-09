@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template
+    <input type="text" id="item-text"> 
+    <button id="add-item">Add Item</button>
+    <ul id="my-list">
+
+    </ul>
+
+
+    <template id="my-item-template">
+        <li>
+
+        </li>
+    </template>
+
+    <script>
+        const textEl = document.querySelector("#item-text");
+        const list1 = document.querySelector("#my-list");
+
+        const template = document.querySelector("#my-item-template");
+
+        document.querySelector("#add-item").addEventListener('click', ()=>{
+            const newEl = template.content.cloneNode(true);
+            newEl.querySelector("li").textContent = textEl.value;
+            list1.appendChild(newEl);
+        });
+        
+    </script>
+</body>
+</html>

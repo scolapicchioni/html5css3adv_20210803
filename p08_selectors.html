@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .c1 {
+            background-color: #BADA55;
+        }
+
+        body p  {
+            background-color : red;   
+        }
+
+        p {
+            background-color : blue;   
+        }
+
+        .products__item::first-letter {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .products__item:nth-child(2n) {
+            background-color: #BADA55;
+        }
+        .products__item:nth-child(2n+1) {
+            background-color: #da9555;
+        }
+        
+    </style>
+</head>
+<body>
+    https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors
+    <p>p1</p>
+    <p class="c1">p2</p>
+    <p style="background-color: black; color:white;">p3</p>
+
+    <ul class="products">
+        <li class=products__item>First</li>
+        <li class=products__item>Second</li>
+        <li class=products__item>Third</li>
+        <li class=products__item>Fourth</li>
+        <li class=products__item>Fifth</li>
+    </ul>
+
+</body>
+</html>

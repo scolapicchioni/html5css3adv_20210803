@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes shake {
+            10%, 90% {
+                transform: translate3d(-1px, 0, 0);
+            }
+            
+            20%, 80% {
+                transform: translate3d(2px, 0, 0);
+            }
+
+            30%, 50%, 70% {
+                transform: translate3d(-4px, 0, 0);
+            }
+
+            40%, 60% {
+                transform: translate3d(4px, 0, 0);
+            }
+            }
+        input {
+            transition : all 1s;
+        }
+        input:invalid {
+            background-color: red;
+            box-shadow: 1px 1px 5px yellow;
+            animation: 1s shake;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>https://developer.mozilla.org/en-US/docs/Web/CSS/transform</li>
+        <li>https://developer.mozilla.org/en-US/docs/Web/CSS/transition</li>
+        <li>https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions</li>
+        <li>https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes</li>
+        <li>https://developer.mozilla.org/en-US/docs/Web/CSS/animation</li>
+        <li>https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations</li>
+    </ul>
+    <form>
+    <input type="text" required>
+    <input type="submit">
+</form>
+</body>
+</html>
